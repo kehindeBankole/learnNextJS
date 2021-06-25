@@ -1,9 +1,10 @@
 import styles from '../styles/Nav.module.css'
+import Link from 'next/link'
 function Nav({children}) {
     return (
         <div className={styles.nav}>
             {/* {children} */}
-            <p>nav</p>
+            <Link href="/about">Nav</Link>
         </div>
     )
 }
