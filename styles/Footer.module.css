@@ -1,0 +1,11 @@
+.foooter{
+    position:fixed;
+    height:100px;
+    background-color: red !important;
+    bottom:0;
+    width: 100%;
+    color:white !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
