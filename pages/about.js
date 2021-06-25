@@ -1,34 +1,30 @@
-import React from 'react'
-import Head from 'next/head'
-function about() {
-    const[data , setData]=React.useState([])
-   async function get(){
-        try {
-           const fet  =  await fetch('https://jsonplaceholder.typicode.com/comments') 
-           const comments =await fet.json()
-           console.log(comments)
-           setData(comments)
-        } catch (error) {
-           console.log(error) 
-        }
-    }
-    React.useEffect(() => {
-       get()
-    }, [])
-    return (
-        <div>
-            <Head>
-                <title>about page testi</title>
-            </Head>
-            <main>
-                {
-                    data.map(comment =>(
-                        comment.body
-                    ))
-                }
-            </main>
-        </div>
-    )
-}
+import React from "react";
+import Head from "next/head";
+function about({comments}) {
+  const [data, setData] = React.useState([]);
 
-export default about
+  return (
+    <div>
+      <Head>
+        <title>about page testi</title>
+      </Head>
+      <main>
+        {comments.map((comment, index) => (
+          <p key={index} style={{ fontSize: "18px", fontWeight: "bold" , marginBottom:"50px" , textAlign: "justify"}}>
+            {comment.body}
+          </p>
+        ))}
+      </main>
+    </div>
+  );
+}
+export async function getStaticProps() {
+    const fet = await fetch("https://jsonplaceholder.typicode.com/comments");
+    const comments = await fet.json();
+    console.log(comments);
+    return {
+      props:{ comments}
+    }
+  }
+  
+export default about;
